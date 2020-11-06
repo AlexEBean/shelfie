@@ -35,6 +35,7 @@ class App extends Component {
           <Dashboard
             inventory = {inventory}
             key = {inventory.id} 
+            getInventory = {this.getInventory}
               />
 
           <Form

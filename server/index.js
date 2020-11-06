@@ -21,6 +21,7 @@ app.use(express.json())
 
 app.get("/api/inventory", ctrl.getInventory)
 app.post("/api/inventory", ctrl.addProduct)
+app.delete("/api/inventory/:id", ctrl.deleteProduct)
   
 app.listen(SERVER_PORT, () => {
     console.log(`Definitely listening on port ${SERVER_PORT}.`)
