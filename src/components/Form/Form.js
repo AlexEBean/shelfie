@@ -5,33 +5,33 @@ class Form extends Component {
     constructor(){
         super()
         this.state = {
-            imgURL: "",
+            imageURL: "",
             name: "",
             price: 0
         }
     }
    
-    handleImageURL(e) {
+    handleImageURL = (e) => {
         this.setState({
           imageURL: e.target.value
         })
       }
     
-    handleProductName(e) {
+    handleProductName = (e) => {
         this.setState({
           productName: e.target.value
         })
       }
     
-    handlePrice(e) {
+    handlePrice = (e) => {
         this.setState({
           price: e.target.value
         })
       }
 
-    resetValues () {
+    resetValues = () => {
         this.setState({
-            imgURL: "",
+            imageURL: "",
             name: "",
             price: 0
         })

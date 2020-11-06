@@ -7,22 +7,31 @@ import "./App.css"
 
 class App extends Component {
   constructor(){
+    super()
     this.state = {
       inventory: [{
         name: "Bacon",
         imageURL: "",
         price: 5
+      },
+      {
+        name: "SayWhat",
+        imageURL: "",
+        price: 8
       }]
     }
   }
 
   render() {
+    const {inventory} = this.state
     return (
       <div>
         <Header/>
         <Dashboard
-          inventory = this.state.inventory 
-        />
+          inventory = {inventory}
+          key = {inventory.id} 
+            />
+
         <Form/>
       </div>
     )
