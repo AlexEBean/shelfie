@@ -18,6 +18,8 @@ massive({
     .catch(err => console.log(err))
 
 app.use(express.json())
+
+app.get('/api/inventory', ctrl.getInventory)
   
 app.listen(SERVER_PORT, () => {
     console.log(`Definitely listening on port ${SERVER_PORT}.`)
