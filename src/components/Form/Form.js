@@ -7,7 +7,8 @@ class Form extends Component {
         this.state = {
             imageURL: "",
             name: "",
-            price: 0
+            price: 0,
+            edit: false
         }
     }
    
@@ -37,6 +38,14 @@ class Form extends Component {
         })
     }
 
+    componentDidUpdate(prevProps){
+        const {currentInventory} = this.props
+
+        if (currentInventory !== prevProps.currentInventory) {
+            this.setState(currentInventory)
+        } 
+    }
+
     addProduct = (imageURL, name, price) => {
         axios
           .post("/api/inventory", { imageURL, name, price })
@@ -51,6 +60,12 @@ class Form extends Component {
         })
         .catch((err) => console.log(err))
     }       
+
+    toggleEdit = () => {
+        this.setState({
+            edit: !this.state.edit
+        })
+    } 
 
     render() {
         const {imageURL, name, price} = this.state
@@ -81,13 +96,22 @@ class Form extends Component {
                 >
                     Cancel    
                 </button>
-                <button
-                    onClick = { () => {
-                        this.addProduct(imageURL, name, price)
-                    }}
-                >
-                    Add to Inventory
-                </button>
+                
+                {this.state.edit
+                ?
+                    <button>
+                        Save Changes
+                    </button>
+                :
+                    <button
+                        onClick = { () => {
+                            this.addProduct(imageURL, name, price)
+                        }}
+                    >
+                        Add to Inventory
+                    </button>
+                }
+                
             </div>
         )
     }

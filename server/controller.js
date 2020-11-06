@@ -26,13 +26,26 @@ module.exports = {
 
     deleteProduct: (req, res) => {
         const db = req.app.get("db")
-        const { id } = req.params;
+        const { id } = req.params
         
         db.delete_product(id)
           .then(() => res.sendStatus(200))
           .catch((err) => {
-            res.status(500).send("Something went wrong!");
+            res.status(500).send("Something went wrong!")
             console.log(err)
           })
       },    
+
+      updateProduct: (req, res) => {
+        const db = req.app.get("db")
+        const {image_url, name, price } = req.body
+        const {id} = req.params
+    
+        db.update_product([id, image_url, name, price])
+          .then((inventory) => res.status(200).send(inventory))
+          .catch((err) => {
+            res.status(500).send("Something went wrong!")
+            console.log(err)
+          })
+      }
 }

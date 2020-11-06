@@ -40,6 +40,7 @@ class App extends Component {
 
           <Form
             getInventory = {this.getInventory}
+            currentInventory = {inventory}
           />
         </div>
       </body>
