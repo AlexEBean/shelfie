@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import axios from "axios"
 
 class Form extends Component {
     constructor(){
@@ -19,7 +19,7 @@ class Form extends Component {
     
     handleProductName = (e) => {
         this.setState({
-          productName: e.target.value
+          name: e.target.value
         })
       }
     
@@ -37,22 +37,42 @@ class Form extends Component {
         })
     }
 
+    addProduct = (imageURL, name, price) => {
+        axios
+          .post("/api/inventory", { imageURL, name, price })
+          .then((res) => { 
+            this.setState({
+                name: res.data,
+                price: res.data,
+                imageURL: res.data,
+            })
+            this.props.getInventory()
+            this.resetValues()
+        })
+        .catch((err) => console.log(err))
+    }       
+
     render() {
-        console.log(this.state.name)
+        const {imageURL, name, price} = this.state
         return (
-            <div>
-                Form
+            <div className = "form">
                 <input
                     onChange = {(e) => this.handleImageURL(e)}
                     placeholder = "Image URL"
+                    value = {imageURL}
+                    name = "imageURL"
                 />
                 <input
                     onChange = {(e) => this.handleProductName(e)}
                     placeholder = "Product Name"
+                    value = {name}
+                    name = "name"
                 />
                 <input
                     onChange = {(e) => this.handlePrice(e)}
                     placeholder = "Price"
+                    value = {price}
+                    name = "price"
                 />
                 <button
                     onClick = { () => {
@@ -61,8 +81,12 @@ class Form extends Component {
                 >
                     Cancel    
                 </button>
-                <button>
-                    Add
+                <button
+                    onClick = { () => {
+                        this.addProduct(imageURL, name, price)
+                    }}
+                >
+                    Add to Inventory
                 </button>
             </div>
         )

@@ -29,15 +29,19 @@ class App extends Component {
   render() {
     const {inventory} = this.state
     return (
-      <div>
+      <body>
         <Header/>
-        <Dashboard
-          inventory = {inventory}
-          key = {inventory.id} 
-            />
+        <div className = "main">
+          <Dashboard
+            inventory = {inventory}
+            key = {inventory.id} 
+              />
 
-        <Form/>
-      </div>
+          <Form
+            getInventory = {this.getInventory}
+          />
+        </div>
+      </body>
     )
   }
 }
