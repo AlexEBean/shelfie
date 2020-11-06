@@ -16,6 +16,14 @@ class Product extends Component {
                 >
                     Delete
                     </button>
+                <button 
+                    // onClick = { () => {
+                    //     this.props.toggleEdit()
+                    // }}
+                    // Doesn't work 
+                >
+                    Edit
+                </button>
             </div>
         )
     }

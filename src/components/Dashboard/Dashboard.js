@@ -19,7 +19,8 @@ class Dashboard extends Component {
             return <Product
                         product = {product}
                         key = {product.product_id}
-                        deleteProduct = {this.deleteProduct}           
+                        deleteProduct = {this.deleteProduct}
+                        toggleEdit = {this.props.toggleEdit}           
                     />
         })
         return (

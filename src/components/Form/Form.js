@@ -39,10 +39,10 @@ class Form extends Component {
     }
 
     componentDidUpdate(prevProps){
-        const {currentInventory} = this.props
+        const {inventory} = this.props
 
-        if (currentInventory !== prevProps.currentInventory) {
-            this.setState(currentInventory)
+        if (inventory !== prevProps.inventory) {
+            this.setState(inventory)
         } 
     }
 

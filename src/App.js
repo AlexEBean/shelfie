@@ -36,11 +36,13 @@ class App extends Component {
             inventory = {inventory}
             key = {inventory.id} 
             getInventory = {this.getInventory}
+            toggleEdit = {this.props.toggleEdit}
               />
 
           <Form
             getInventory = {this.getInventory}
-            currentInventory = {inventory}
+            inventory = {inventory}
+            toggleEdit = {this.props.toggleEdit}
           />
         </div>
       </body>
