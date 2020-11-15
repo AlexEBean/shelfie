@@ -10,7 +10,8 @@ class App extends Component {
   constructor(){
     super()
     this.state = {
-      inventory: []
+      inventory: [],
+      edit: false
     }
   }
 
@@ -26,26 +27,34 @@ class App extends Component {
       .catch((err) => console.log(err))
   }
 
+  toggleEdit = () => {
+    this.setState({
+        edit: !this.state.edit
+    })
+  } 
+
   render() {
-    const {inventory} = this.state
+    const {inventory, edit} = this.state
     return (
-      <body>
+      <div className = "shelfie">
         <Header/>
         <div className = "main">
           <Dashboard
             inventory = {inventory}
             key = {inventory.id} 
             getInventory = {this.getInventory}
-            toggleEdit = {this.props.toggleEdit}
+            edit = {edit}
+            toggleEdit = {this.toggleEdit}
               />
 
           <Form
             getInventory = {this.getInventory}
             inventory = {inventory}
-            toggleEdit = {this.props.toggleEdit}
+            edit = {edit}
+            toggleEdit = {this.toggleEdit}
           />
         </div>
-      </body>
+      </div>
     )
   }
 }

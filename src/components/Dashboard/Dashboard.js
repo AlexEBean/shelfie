@@ -14,13 +14,15 @@ class Dashboard extends Component {
       }
 
     render() {
-        const {inventory} = this.props
+        const {inventory, edit} = this.props
         const mappedInventory = inventory.map((product) => {
             return <Product
                         product = {product}
                         key = {product.product_id}
                         deleteProduct = {this.deleteProduct}
-                        toggleEdit = {this.props.toggleEdit}           
+                        edit = {edit}
+                        toggleEdit = {this.props.toggleEdit}   
+                        inventory = {inventory}        
                     />
         })
         return (

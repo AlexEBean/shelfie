@@ -1,20 +1,20 @@
 import React, { Component } from 'react'
 import axios from "axios"
 
+
 class Form extends Component {
     constructor(){
         super()
         this.state = {
-            imageURL: "",
+            image_url: "",
             name: "",
-            price: 0,
-            edit: false
+            price: 0
         }
     }
    
     handleImageURL = (e) => {
         this.setState({
-          imageURL: e.target.value
+          image_url: e.target.value
         })
       }
     
@@ -32,7 +32,7 @@ class Form extends Component {
 
     resetValues = () => {
         this.setState({
-            imageURL: "",
+            image_url: "",
             name: "",
             price: 0
         })
@@ -46,14 +46,14 @@ class Form extends Component {
         } 
     }
 
-    addProduct = (imageURL, name, price) => {
+    addProduct = (image_url, name, price) => {
         axios
-          .post("/api/inventory", { imageURL, name, price })
+          .post("/api/inventory", { image_url, name, price })
           .then((res) => { 
             this.setState({
                 name: res.data,
                 price: res.data,
-                imageURL: res.data,
+                image_url: res.data,
             })
             this.props.getInventory()
             this.resetValues()
@@ -61,21 +61,31 @@ class Form extends Component {
         .catch((err) => console.log(err))
     }       
 
-    toggleEdit = () => {
-        this.setState({
-            edit: !this.state.edit
+    updateProduct = (image_url, name, price) => {
+        axios
+          .put(`/api/inventory/${this.props.inventory.product_id}`, { image_url, name, price })
+          .then((res) => { 
+            this.setState({
+                name: res.data,
+                price: res.data,
+                image_url: res.data,
+            })
+            this.props.getInventory()
+            this.resetValues()
         })
-    } 
+        .catch((err) => console.log(err))
+    }       
 
     render() {
-        const {imageURL, name, price} = this.state
+        const {image_url, name, price} = this.state
+
         return (
             <div className = "form">
                 <input
                     onChange = {(e) => this.handleImageURL(e)}
                     placeholder = "Image URL"
-                    value = {imageURL}
-                    name = "imageURL"
+                    value = {image_url}
+                    name = "image_url"
                 />
                 <input
                     onChange = {(e) => this.handleProductName(e)}
@@ -97,15 +107,21 @@ class Form extends Component {
                     Cancel    
                 </button>
                 
-                {this.state.edit
+                {this.props.edit
                 ?
-                    <button>
+                    <button
+                        onClick = { () => {
+                            this.updateProduct(image_url, name, price)
+                            this.props.toggleEdit()
+                            console.log(this.props.inventory.product_id)
+                        }}
+                    >
                         Save Changes
                     </button>
                 :
                     <button
                         onClick = { () => {
-                            this.addProduct(imageURL, name, price)
+                            this.addProduct(image_url, name, price)
                         }}
                     >
                         Add to Inventory
