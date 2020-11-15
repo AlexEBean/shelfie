@@ -23,6 +23,7 @@ app.get("/api/inventory", ctrl.getInventory)
 app.post("/api/inventory", ctrl.addProduct)
 app.put("/api/inventory/:id", ctrl.updateProduct)
 app.delete("/api/inventory/:id", ctrl.deleteProduct)
+
   
 app.listen(SERVER_PORT, () => {
     console.log(`Definitely listening on port ${SERVER_PORT}.`)

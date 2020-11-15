@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from "axios"
+import {Link} from "react-router-dom"
 
 
 class Form extends Component {
@@ -36,6 +37,11 @@ class Form extends Component {
             name: "",
             price: 0
         })
+    }
+
+    componentDidMount() {
+        const {inventory} = this.props
+            this.setState(inventory)
     }
 
     componentDidUpdate(prevProps){
@@ -78,45 +84,52 @@ class Form extends Component {
 
     render() {
         const {image_url, name, price} = this.state
+        const {edit} = this.props
 
         return (
             <div className = "form">
+                <h4>Image URL:</h4>
                 <input
                     onChange = {(e) => this.handleImageURL(e)}
-                    placeholder = "Image URL"
                     value = {image_url}
                     name = "image_url"
                 />
+                <h4>Product Name:</h4>
                 <input
                     onChange = {(e) => this.handleProductName(e)}
-                    placeholder = "Product Name"
                     value = {name}
                     name = "name"
                 />
+                <h4>Price:</h4>
                 <input
                     onChange = {(e) => this.handlePrice(e)}
-                    placeholder = "Price"
                     value = {price}
                     name = "price"
                 />
                 <button
                     onClick = { () => {
                         this.resetValues()
+                        if (edit) {
+                            this.props.toggleEdit()  
+                        }
                     }}
                 >
-                    Cancel    
+                    <Link to="/">
+                        Cancel    
+                    </Link>
                 </button>
                 
-                {this.props.edit
+                {edit
                 ?
                     <button
                         onClick = { () => {
                             this.updateProduct(image_url, name, price)
                             this.props.toggleEdit()
-                            console.log(this.props.inventory.product_id)
                         }}
                     >
-                        Save Changes
+                        <Link to = "/">
+                            Save Changes
+                        </Link>
                     </button>
                 :
                     <button
@@ -124,7 +137,9 @@ class Form extends Component {
                             this.addProduct(image_url, name, price)
                         }}
                     >
-                        Add to Inventory
+                        <Link to="/">
+                            Add to Inventory
+                        </Link>
                     </button>
                 }
                 

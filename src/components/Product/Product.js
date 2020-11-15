@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Link} from "react-router-dom"
 
 class Product extends Component {
     render() {
@@ -18,11 +19,11 @@ class Product extends Component {
                 <button 
                     onClick = { () => {
                         this.props.toggleEdit()
-                        this.props.inventory.product_id = product_id
-                        console.log(this.props.edit)
                     }}
                 >
-                    Edit
+                    <Link to = {`/edit/${product_id}`}>
+                        Edit
+                    </Link>
                 </button>
             </div>
         )
