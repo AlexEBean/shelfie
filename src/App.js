@@ -38,7 +38,10 @@ class App extends Component {
     const {inventory, edit} = this.state
     return (
       <div className = "shelfie">
-        <Header/>
+        <Header
+          edit = {edit}
+          toggleEdit = {this.toggleEdit}
+        />
         <div className = "main">
           <Switch>
             <Route exact path = "/"
@@ -58,8 +61,9 @@ class App extends Component {
                   (<Route path = "/add"
                   render = {(props) => (
                     <Form {...props}
-                    getInventory = {this.getInventory}
                     inventory = {inventory}
+                    key = {inventory.id}
+                    getInventory = {this.getInventory}
                     edit = {edit}
                     toggleEdit = {this.toggleEdit}
                     />

@@ -40,8 +40,9 @@ class Form extends Component {
     }
 
     componentDidMount() {
-        const {inventory} = this.props
-            this.setState(inventory)
+        if (this.props.edit) {
+            this.setState(this.props.inventory)
+        }
     }
 
     componentDidUpdate(prevProps){
@@ -69,7 +70,7 @@ class Form extends Component {
 
     updateProduct = (image_url, name, price) => {
         axios
-          .put(`/api/inventory/${this.props.inventory.product_id}`, { image_url, name, price })
+          .put(`/api/inventory/${this.props.match.params.id}`, { image_url, name, price })
           .then((res) => { 
             this.setState({
                 name: res.data,
@@ -110,12 +111,12 @@ class Form extends Component {
                     onClick = { () => {
                         this.resetValues()
                         if (edit) {
-                            this.props.toggleEdit()  
+                            this.props.toggleEdit()
                         }
                     }}
                 >
                     <Link to="/">
-                        Cancel    
+                        Cancel
                     </Link>
                 </button>
                 
