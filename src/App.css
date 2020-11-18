@@ -72,3 +72,16 @@ img {
 input {
   width: 90%;
 }
+
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.x:hover{
+  color: red;
+}

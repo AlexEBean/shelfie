@@ -15,7 +15,9 @@ class Header extends Component {
                             }
                         }}
                     > 
-                        <Link to="/">
+                        <Link to="/"
+                            className = "link"
+                        >
                             Dashboard
                         </Link>
                     </button>
@@ -26,7 +28,9 @@ class Header extends Component {
                             }
                         }}
                     > 
-                        <Link to="/add">
+                        <Link to="/add"
+                            className = "link"
+                        >
                             Add to Inventory
                         </Link>
                     </button>

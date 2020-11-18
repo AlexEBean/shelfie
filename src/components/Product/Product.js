@@ -9,7 +9,7 @@ class Product extends Component {
                 <img src = {image_url} alt = {name}/>
                 <h1>Name: {name}</h1>
                 <h1>Price: ${price}</h1>
-                <button className = "X"
+                <button className = "x"
                     onClick = { () => {
                         this.props.deleteProduct(product_id)
                     }}
@@ -21,7 +21,9 @@ class Product extends Component {
                         this.props.toggleEdit()
                     }}
                 >
-                    <Link to = {`/edit/${product_id}`}>
+                    <Link to = {`/edit/${product_id}`}
+                        className = "link"
+                    >
                         Edit
                     </Link>
                 </button>

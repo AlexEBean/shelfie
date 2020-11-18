@@ -115,7 +115,9 @@ class Form extends Component {
                         }
                     }}
                 >
-                    <Link to="/">
+                    <Link to = "/"
+                        className = "link"
+                    >
                         Cancel
                     </Link>
                 </button>
@@ -128,7 +130,9 @@ class Form extends Component {
                             this.props.toggleEdit()
                         }}
                     >
-                        <Link to = "/">
+                        <Link to = "/"
+                            className = "link"
+                        >
                             Save Changes
                         </Link>
                     </button>
@@ -138,7 +142,9 @@ class Form extends Component {
                             this.addProduct(image_url, name, price)
                         }}
                     >
-                        <Link to="/">
+                        <Link to="/"
+                            className = "link"
+                        >
                             Add to Inventory
                         </Link>
                     </button>
