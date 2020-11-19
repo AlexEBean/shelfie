@@ -53,30 +53,20 @@ class Form extends Component {
         } 
     }
 
-    addProduct = (image_url, name, price) => {
+    addProduct = () => {
         axios
-          .post("/api/inventory", { image_url, name, price })
-          .then((res) => { 
-            this.setState({
-                name: res.data,
-                price: res.data,
-                image_url: res.data,
-            })
+          .post("/api/inventory", {...this.state})
+          .then(() => { 
             this.props.getInventory()
             this.resetValues()
         })
         .catch((err) => console.log(err))
     }       
 
-    updateProduct = (image_url, name, price) => {
+    updateProduct = () => {
         axios
-          .put(`/api/inventory/${this.props.match.params.id}`, { image_url, name, price })
-          .then((res) => { 
-            this.setState({
-                name: res.data,
-                price: res.data,
-                image_url: res.data,
-            })
+          .put(`/api/inventory/${this.props.match.params.id}`, {...this.state})
+          .then(() => { 
             this.props.getInventory()
             this.resetValues()
         })
